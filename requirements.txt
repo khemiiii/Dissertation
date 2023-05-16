@@ -1,10 +1,5 @@
 flask
-render_template
-request
 networkx
 matplotlib
-matplotlib.pyplot
-itertools
+openpyxl
 pandas
-os
-itemgetter
