@@ -1,35 +1,8 @@
-import xlrd
 import networkx as nx
-from networkx import number_of_nodes, dorogovtsev_goltsev_mendes_graph, number_of_edges
+from networkx import number_of_nodes, number_of_edges
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
-import chart_studio
-import plotly.express as px
-import chart_studio.plotly as py
-import plotly.graph_objects as go
-
-
-def file_upload(file):
-    G = nx.DiGraph()
-    domains = []
-    total_domains = []
-
-    book = xlrd.open_workbook(file)
-    sheet = book.sheet_by_index(0)
-
-    for row in range(sheet.nrows):
-        data = sheet.row_slice(row)
-        node1 = str(int(data[0].value))
-        node2 = str(int(data[1].value))
-        rel1 = str(int(data[2].value))
-        G.add_edge(node1, node2, rel=rel1)
-        domains.append((node1, node2))
-        total_domains.append(node1)
-        total_domains.append(node2)
-
-    G.add_edges_from(domains)  # THE EDGES IN THE DATASET ARE ADDED TO THE DIRECTED GRAPH, G
-    return G
 
 
 # THIS FUNCTION IS CREATED TO GET THE INDEX OF THE DATE IN A LIST G
@@ -40,21 +13,17 @@ def get_index_of_date(G, date):
     return f"{date}"
 
 
-def get_index_of_file(F, date):
-    if type(F) == list and date in F:
-        file_index = F.index(date)
-        return file_index
-    return f"{date}"
+# COMMENT THE SCRIPT BELOW THIS LINE BEFORE RUNNING APPLICATION
 
 
 G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016,
      2017, 2018, 2019, 2020, 2021, 2022]
 
-## THE DATA IS EXTRACTED FROM THE PANDAS DATAFRAME AND PASSED INTO THE UNDIRECTED GRAPH
+# THE DATA IS EXTRACTED FROM THE PANDAS DATAFRAME AND PASSED INTO THE UNDIRECTED GRAPH
 # G[0] = nx.Graph()  # creates an undirected graph
 # df = pd.read_excel(f"Files/F1998.xlsx")  # pandas is used to extract the data from the file
 # G[0] = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr='relationship')
-# COMPUTES THE NETWORK SIZE, NUMBER OF LINKS, NUMBER OF PROVIDER AND PEER LINKS, AND THE DENSITY PROPERTY OF THE GRAPH
+# COMPUTES THE NETWORK SIZE, NUMBER OF LINKS, NUMBER OF PROVIDER AND PEER LINKS, AND THE LINK DENSITY PROPERTY OF THE GRAPH
 # count_1998 = number_of_nodes(G[0])
 # print(f"1998: {count_1998}")
 # edges_1998 = number_of_edges(G[0])
@@ -84,20 +53,21 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 #         color_map_1998[key] = "red"
 #
 # rel_colors_1998 = [color_map_1998.get(edge) for edge in G[0].edges()]
-# degree = dict(G[0].degree)
-# nx.set_node_attributes(G[0], degree, "Degree")
-# value = nx.get_node_attributes(G[0], "Degree")
-# H= nx.Graph()
+#
+# # create a second graph to append nodes meeting the degree requirement
+# degree_1998 = dict(G[0].degree)
+# nx.set_node_attributes(G[0], degree_1998, "Degree")
+# value_1998 = nx.get_node_attributes(G[0], "Degree")
+# H_1998 = nx.Graph()
 # for node1, node2 in G[0].edges():
-#     if value[node2] > 130:
-#         H.add_edge(node1, node2)
-
-# THE GRAPH P IS GENERATED WITH A SPRING LAYOUT
-# PLT.CLOSE() PREVENTS THE GRAPHS FROM GENERATING A LEYERED PLOT ON THE PREVIOUSLY GENERATED PLOT
-# pos_1998 = nx.spring_layout(H)
-# nx.draw(H, pos_1998, with_labels=True, edge_color=rel_colors_1998)
+#     if value_1998[node2] > 130:
+#         H_1998.add_edge(node1, node2)
+#
+# # construct and save graph
+# pos_1998 = nx.spring_layout(H_1998)
+# nx.draw(H_1998, pos_1998, with_labels=True, edge_color=rel_colors_1998)
 # plt.plot(figsize=(20, 15))
-# plt.savefig("static/G1998.png")
+# plt.savefig("static/graph/G1998.png")
 # plt.close()
 
 
@@ -132,11 +102,20 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 #         color_map_1999[key] = "red"
 #
 # rel_colors_1999 = [color_map_1999.get(edge) for edge in G[1].edges()]
-# pos_1999 = nx.spectral_layout(G[1])
-# nx.draw(G[1], pos_1999, with_labels=True, edge_color=rel_colors_1999)
+#
+# degree_1999 = dict(G[1].degree)
+# nx.set_node_attributes(G[1], degree_1999, "Degree")
+# value_1999 = nx.get_node_attributes(G[1], "Degree")
+# H_1999 = nx.Graph()
+# for node1, node2 in G[1].edges():
+#     if value_1999[node2] > 130:
+#         H_1999.add_edge(node1, node2)
+#
+# pos_1999 = nx.spring_layout(H_1999)
+# nx.draw(H_1999, pos_1999, with_labels=True, edge_color=rel_colors_1999)
+# plt.plot(figsize=(20, 15))
 # plt.savefig("static/graph/G1999.png")
 # plt.close()
-
 
 # G[2] = nx.Graph()
 # df = pd.read_excel(f"Files/F2000.xlsx")
@@ -169,8 +148,18 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 #         color_map_2000[key] = "red"
 #
 # rel_colors_2000 = [color_map_2000.get(edge) for edge in G[2].edges()]
-# pos_2000 = nx.spectral_layout(G[2])
-# nx.draw(G[2], pos_2000, with_labels=True, edge_color=rel_colors_2000)
+
+# degree_2000 = dict(G[2].degree)
+# nx.set_node_attributes(G[2], degree_2000, "Degree")
+# value_2000 = nx.get_node_attributes(G[2], "Degree")
+# H_2000 = nx.Graph()
+# for node1, node2 in G[2].edges():
+#     if value_2000[node2] > 130:
+#         H_2000.add_edge(node1, node2)
+
+# pos_2000 = nx.spectral_layout(H_2000)
+# nx.draw(H_2000, pos_2000, with_labels=True, edge_color=rel_colors_2000)
+# plt.plot(figsize=(20, 15))
 # plt.savefig("static/graph/G2000.png")
 # plt.close()
 
@@ -206,8 +195,18 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 #         color_map_2001[key] = "red"
 #
 # rel_colors_2001 = [color_map_2001.get(edge) for edge in G[3].edges()]
-# pos_2001 = nx.spectral_layout(G[3])
-# nx.draw(G[3], pos_2001, with_labels=True, edge_color=rel_colors_2001)
+
+# degree_2001 = dict(G[3].degree)
+# nx.set_node_attributes(G[3], degree_2001, "Degree")
+# value_2001 = nx.get_node_attributes(G[3], "Degree")
+# H_2001 = nx.Graph()
+# for node1, node2 in G[3].edges():
+#     if value_2001[node2] > 130:
+#         H_2001.add_edge(node1, node2)
+
+# pos_2001 = nx.spectral_layout(H_2001)
+# nx.draw(H_2001, pos_2001, with_labels=True, edge_color=rel_colors_2001)
+# plt.plot(figsize=(20, 15))
 # plt.savefig("static/graph/G2001.png")
 # plt.close()
 
@@ -243,8 +242,18 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 #         color_map_2002[key] = "red"
 #
 # rel_colors_2002 = [color_map_2002.get(edge) for edge in G[4].edges()]
-# pos_2002 = nx.spectral_layout(G[4])
-# nx.draw(G[4], pos_2002, with_labels=True, edge_color=rel_colors_2002)
+
+# degree_2002 = dict(G[4].degree)
+# nx.set_node_attributes(G[4], degree_2002, "Degree")
+# value_2002 = nx.get_node_attributes(G[4], "Degree")
+# H_2002 = nx.Graph()
+# for node1, node2 in G[4].edges():
+#     if value_2002[node2] > 130:
+#         H_2002.add_edge(node1, node2)
+
+# pos_2002 = nx.spectral_layout(H_2002)
+# nx.draw(H_2002, pos_2002, with_labels=True, edge_color=rel_colors_2002)
+# plt.plot(figsize=(20, 15))
 # plt.savefig("static/graph/G2002.png")
 # plt.close()
 
@@ -280,8 +289,18 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 #         color_map_2003[key] = "red"
 #
 # rel_colors_2003 = [color_map_2003.get(edge) for edge in G[5].edges()]
-# pos_2003 = nx.spectral_layout(G[5])
-# nx.draw(G[5], pos_2003, with_labels=True, edge_color=rel_colors_2003)
+
+# degree_2003 = dict(G[5].degree)
+# nx.set_node_attributes(G[5], degree_2003, "Degree")
+# value_2003 = nx.get_node_attributes(G[5], "Degree")
+# H_2003 = nx.Graph()
+# for node1, node2 in G[5].edges():
+#     if value_2003[node2] > 130:
+#         H_2003.add_edge(node1, node2)
+
+# pos_2003 = nx.spectral_layout(H_2003)
+# nx.draw(H_2003, pos_2003, with_labels=True, edge_color=rel_colors_2003)
+# plt.plot(figsize=(20, 15))
 # plt.savefig("static/graph/G2003.png")
 # plt.close()
 
@@ -317,8 +336,18 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 #         color_map_2004[key] = "red"
 #
 # rel_colors_2004 = [color_map_2004.get(edge) for edge in G[6].edges()]
-# pos_2004 = nx.spectral_layout(G[6])
-# nx.draw(G[6], pos_2004, with_labels=True, edge_color=rel_colors_2004)
+
+# degree_2004 = dict(G[6].degree)
+# nx.set_node_attributes(G[6], degree_2004, "Degree")
+# value_2004 = nx.get_node_attributes(G[6], "Degree")
+# H_2004 = nx.Graph()
+# for node1, node2 in G[6].edges():
+#     if value_2004[node2] > 130:
+#         H_2004.add_edge(node1, node2)
+
+# pos_2004 = nx.spectral_layout(H_2004)
+# nx.draw(H_2004, pos_2004, with_labels=True, edge_color=rel_colors_2004)
+# plt.plot(figsize=(20, 15))
 # plt.savefig("static/graph/G2004.png")
 # plt.close()
 
@@ -354,8 +383,18 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 #         color_map_2005[key] = "red"
 #
 # rel_colors_2005 = [color_map_2005.get(edge) for edge in G[7].edges()]
-# pos_2005 = nx.spectral_layout(G[7])
-# nx.draw(G[7], pos_2005, with_labels=True, edge_color=rel_colors_2005)
+
+# degree_2005 = dict(G[7].degree)
+# nx.set_node_attributes(G[7], degree_2005, "Degree")
+# value_2005 = nx.get_node_attributes(G[7], "Degree")
+# H_2005 = nx.Graph()
+# for node1, node2 in G[7].edges():
+#     if value_2005[node2] > 130:
+#         H_2005.add_edge(node1, node2)
+
+# pos_2005 = nx.spectral_layout(H_2005)
+# nx.draw(H_2005, pos_2005, with_labels=True, edge_color=rel_colors_2005)
+# plt.plot(figsize=(20, 15))
 # plt.savefig("static/graph/G2005.png")
 # plt.close()
 
@@ -391,8 +430,18 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 #         color_map_2006[key] = "red"
 #
 # rel_colors_2006 = [color_map_2006.get(edge) for edge in G[8].edges()]
-# pos_2006 = nx.spectral_layout(G[8])
-# nx.draw(G[8], pos_2006, with_labels=True, edge_color=rel_colors_2006)
+
+# degree_2006 = dict(G[8].degree)
+# nx.set_node_attributes(G[8], degree_2006, "Degree")
+# value_2006 = nx.get_node_attributes(G[8], "Degree")
+# H_2006 = nx.Graph()
+# for node1, node2 in G[8].edges():
+#     if value_2006[node2] > 130:
+#         H_2006.add_edge(node1, node2)
+
+# pos_2006 = nx.spectral_layout(H_2006)
+# nx.draw(H_2006, pos_2006, with_labels=True, edge_color=rel_colors_2006)
+# plt.plot(figsize=(20, 15))
 # plt.savefig("static/graph/G2006.png")
 # plt.close()
 
@@ -428,8 +477,18 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 #         color_map_2007[key] = "red"
 #
 # rel_colors_2007 = [color_map_2007.get(edge) for edge in G[9].edges()]
-# pos_2007 = nx.spectral_layout(G[9])
-# nx.draw(G[9], pos_2007, with_labels=True, edge_color=rel_colors_2007)
+
+# degree_2007 = dict(G[9].degree)
+# nx.set_node_attributes(G[9], degree_2007, "Degree")
+# value_2007 = nx.get_node_attributes(G[9], "Degree")
+# H_2007 = nx.Graph()
+# for node1, node2 in G[9].edges():
+#     if value_2007[node2] > 130:
+#         H_2007.add_edge(node1, node2)
+
+# pos_2007 = nx.spectral_layout(H_2007)
+# nx.draw(H_2007, pos_2007, with_labels=True, edge_color=rel_colors_2007)
+# plt.plot(figsize=(20, 15))
 # plt.savefig("static/graph/G2007.png")
 # plt.close()
 
@@ -465,8 +524,18 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 #         color_map_2008[key] = "red"
 #
 # rel_colors_2008 = [color_map_2008.get(edge) for edge in G[10].edges()]
-# pos_2008 = nx.spectral_layout(G[10])
-# nx.draw(G[10], pos_2008, with_labels=True, edge_color=rel_colors_2008)
+
+# degree_2008 = dict(G[10].degree)
+# nx.set_node_attributes(G[10], degree_2008, "Degree")
+# value_2008 = nx.get_node_attributes(G[10], "Degree")
+# H_2008 = nx.Graph()
+# for node1, node2 in G[10].edges():
+#     if value_2008[node2] > 130:
+#         H_2008.add_edge(node1, node2)
+
+# pos_2008 = nx.spectral_layout(H_2008)
+# nx.draw(H_2008, pos_2008, with_labels=True, edge_color=rel_colors_2008)
+# plt.plot(figsize=(20, 15))
 # plt.savefig("static/graph/G2008.png")
 # plt.close()
 
@@ -502,8 +571,18 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 #         color_map_2009[key] = "red"
 #
 # rel_colors_2009 = [color_map_2009.get(edge) for edge in G[11].edges()]
-# pos_2009 = nx.spectral_layout(G[11])
-# nx.draw(G[11], pos_2009, with_labels=True, edge_color=rel_colors_2009)
+
+# degree_2009 = dict(G[11].degree)
+# nx.set_node_attributes(G[11], degree_2009, "Degree")
+# value_2009 = nx.get_node_attributes(G[11], "Degree")
+# H_2009 = nx.Graph()
+# for node1, node2 in G[11].edges():
+#     if value_2009[node2] > 130:
+#         H_2009.add_edge(node1, node2)
+
+# pos_2009 = nx.spectral_layout(H_2009)
+# nx.draw(H_2009, pos_2009, with_labels=True, edge_color=rel_colors_2009)
+# plt.plot(figsize=(20, 15))
 # plt.savefig("static/graph/G2009.png")
 # plt.close()
 
@@ -539,8 +618,18 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 #         color_map_2010[key] = "red"
 #
 # rel_colors_2010 = [color_map_2010.get(edge) for edge in G[12].edges()]
-# pos_2010 = nx.spectral_layout(G[12])
-# nx.draw(G[12], pos_2010, with_labels=True, edge_color=rel_colors_2010)
+
+# degree_2010 = dict(G[12].degree)
+# nx.set_node_attributes(G[12], degree_2010, "Degree")
+# value_2010 = nx.get_node_attributes(G[12], "Degree")
+# H_2010 = nx.Graph()
+# for node1, node2 in G[12].edges():
+#     if value_2010[node2] > 1504:
+#         H_2010.add_edge(node1, node2)
+
+# pos_2010 = nx.spectral_layout(H_2010)
+# nx.draw(H_2010, pos_2010, with_labels=True, edge_color=rel_colors_2010)
+# plt.plot(figsize=(20, 15))
 # plt.savefig("static/graph/G2010.png")
 # plt.close()
 
@@ -576,8 +665,18 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 #         color_map_2011[key] = "red"
 #
 # rel_colors_2011 = [color_map_2011.get(edge) for edge in G[13].edges()]
-# pos_2011 = nx.spectral_layout(G[13])
-# nx.draw(G[13], pos_2011, with_labels=True, edge_color=rel_colors_2011)
+
+# degree_2011 = dict(G[13].degree)
+# nx.set_node_attributes(G[13], degree_2011, "Degree")
+# value_2011 = nx.get_node_attributes(G[13], "Degree")
+# H_2011 = nx.Graph()
+# for node1, node2 in G[13].edges():
+#     if value_2011[node2] > 130:
+#         H_2011.add_edge(node1, node2)
+
+# pos_2011 = nx.spectral_layout(H_2011)
+# nx.draw(H_2011, pos_2011, with_labels=True, edge_color=rel_colors_2011)
+# plt.plot(figsize=(20, 15))
 # plt.savefig("static/graph/G2011.png")
 # plt.close()
 
@@ -613,8 +712,18 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 #         color_map_2012[key] = "red"
 #
 # rel_colors_2012 = [color_map_2012.get(edge) for edge in G[14].edges()]
-# pos_2012 = nx.spectral_layout(G[14])
-# nx.draw(G[14], pos_2012, with_labels=True, edge_color=rel_colors_2012)
+
+# degree_2012 = dict(G[14].degree)
+# nx.set_node_attributes(G[14], degree_2012, "Degree")
+# value_2012 = nx.get_node_attributes(G[14], "Degree")
+# H_2012 = nx.Graph()
+# for node1, node2 in G[14].edges():
+#     if value_2012[node2] > 130:
+#         H_2012.add_edge(node1, node2)
+
+# pos_2012 = nx.spectral_layout(H_2012)
+# nx.draw(H_2012, pos_2012, with_labels=True, edge_color=rel_colors_2012)
+# plt.plot(figsize=(20, 15))
 # plt.savefig("static/graph/G2012.png")
 # plt.close()
 
@@ -650,8 +759,18 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 #         color_map_2013[key] = "red"
 #
 # rel_colors_2013 = [color_map_2013.get(edge) for edge in G[15].edges()]
-# pos_2013 = nx.spectral_layout(G[15])
-# nx.draw(G[15], pos_2013, with_labels=True, edge_color=rel_colors_2013)
+
+# degree_2013 = dict(G[15].degree)
+# nx.set_node_attributes(G[15], degree_2013, "Degree")
+# value_2013 = nx.get_node_attributes(G[15], "Degree")
+# H_2013 = nx.Graph()
+# for node1, node2 in G[15].edges():
+#     if value_2013[node2] > 130:
+#         H_2013.add_edge(node1, node2)
+
+# pos_2013 = nx.spectral_layout(H_2013)
+# nx.draw(H_2013, pos_2013, with_labels=True, edge_color=rel_colors_2013)
+# plt.plot(figsize=(20, 15))
 # plt.savefig("static/graph/G2013.png")
 # plt.close()
 
@@ -687,8 +806,18 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 #         color_map_2014[key] = "red"
 #
 # rel_colors_2014 = [color_map_2014.get(edge) for edge in G[16].edges()]
-# pos_2014 = nx.spectral_layout(G[16])
-# nx.draw(G[16], pos_2014, with_labels=True, edge_color=rel_colors_2014)
+
+# degree_2014 = dict(G[16].degree)
+# nx.set_node_attributes(G[16], degree_2014, "Degree")
+# value_2014 = nx.get_node_attributes(G[16], "Degree")
+# H_2014 = nx.Graph()
+# for node1, node2 in G[16].edges():
+#     if value_2014[node2] > 130:
+#         H_2014.add_edge(node1, node2)
+
+# pos_2014 = nx.spectral_layout(H_2014)
+# nx.draw(H_2014, pos_2014, with_labels=True, edge_color=rel_colors_2014)
+# plt.plot(figsize=(20, 15))
 # plt.savefig("static/graph/G2014.png")
 # plt.close()
 
@@ -724,8 +853,18 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 #         color_map_2015[key] = "red"
 #
 # rel_colors_2015 = [color_map_2015.get(edge) for edge in G[17].edges()]
-# pos_2015 = nx.spectral_layout(G[17])
-# nx.draw(G[17], pos_2015, with_labels=True, edge_color=rel_colors_2015)
+
+# degree_2015 = dict(G[17].degree)
+# nx.set_node_attributes(G[17], degree_2015, "Degree")
+# value_2015 = nx.get_node_attributes(G[17], "Degree")
+# H_2015 = nx.Graph()
+# for node1, node2 in G[17].edges():
+#     if value_2015[node2] > 130:
+#         H_2015.add_edge(node1, node2)
+
+# pos_2015 = nx.spectral_layout(H_2015)
+# nx.draw(H_2015, pos_2015, with_labels=True, edge_color=rel_colors_2015)
+# plt.plot(figsize=(20, 15))
 # plt.savefig("static/graph/G2015.png")
 # plt.close()
 
@@ -761,8 +900,18 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 #         color_map_2016[key] = "red"
 #
 # rel_colors_2016 = [color_map_2016.get(edge) for edge in G[18].edges()]
-# pos_2016 = nx.spectral_layout(G[18])
-# nx.draw(G[18], pos_2016, with_labels=True, edge_color=rel_colors_2016)
+
+# degree_2016 = dict(G[18].degree)
+# nx.set_node_attributes(G[18], degree_2016, "Degree")
+# value_2016 = nx.get_node_attributes(G[18], "Degree")
+# H_2016 = nx.Graph()
+# for node1, node2 in G[18].edges():
+#     if value_2016[node2] > 130:
+#         H_2016.add_edge(node1, node2)
+
+# pos_2016 = nx.spectral_layout(H_2016)
+# nx.draw(H_2016, pos_2016, with_labels=True, edge_color=rel_colors_2016)
+# plt.plot(figsize=(20, 15))
 # plt.savefig("static/graph/G2016.png")
 # plt.close()
 
@@ -798,8 +947,18 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 #         color_map_2017[key] = "red"
 #
 # rel_colors_2017 = [color_map_2017.get(edge) for edge in G[19].edges()]
-# pos_2017 = nx.spectral_layout(G[19])
-# nx.draw(G[19], pos_2017, with_labels=True, edge_color=rel_colors_2017)
+
+# degree_2017 = dict(G[19].degree)
+# nx.set_node_attributes(G[19], degree_2017, "Degree")
+# value_2017 = nx.get_node_attributes(G[19], "Degree")
+# H_2017 = nx.Graph()
+# for node1, node2 in G[19].edges():
+#     if value_2017[node2] > 130:
+#         H_2017.add_edge(node1, node2)
+
+# pos_2017 = nx.spectral_layout(H_2017)
+# nx.draw(H_2017, pos_2017, with_labels=True, edge_color=rel_colors_2017)
+# plt.plot(figsize=(20, 15))
 # plt.savefig("static/graph/G2017.png")
 # plt.close()
 
@@ -835,8 +994,18 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 #         color_map_2018[key] = "red"
 #
 # rel_colors_2018 = [color_map_2018.get(edge) for edge in G[20].edges()]
-# pos_2018 = nx.spectral_layout(G[20])
-# nx.draw(G[20], pos_2018, with_labels=True, edge_color=rel_colors_2018)
+
+# degree_2018 = dict(G[20].degree)
+# nx.set_node_attributes(G[20], degree_2018, "Degree")
+# value_2018 = nx.get_node_attributes(G[20], "Degree")
+# H_2018 = nx.Graph()
+# for node1, node2 in G[20].edges():
+#     if value_2018[node2] > 130:
+#         H_2018.add_edge(node1, node2)
+
+# pos_2018 = nx.spectral_layout(H_2018)
+# nx.draw(H_2018, pos_2018, with_labels=True, edge_color=rel_colors_2018)
+# plt.plot(figsize=(20, 15))
 # plt.savefig("static/graph/G2018.png")
 # plt.close()
 
@@ -872,8 +1041,18 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 #         color_map_2019[key] = "red"
 #
 # rel_colors_2019 = [color_map_2019.get(edge) for edge in G[21].edges()]
-# pos_2019 = nx.spectral_layout(G[21])
-# nx.draw(G[21], pos_2019, with_labels=True, edge_color=rel_colors_2019)
+
+# degree_2019 = dict(G[21].degree)
+# nx.set_node_attributes(G[21], degree_2019, "Degree")
+# value_2019 = nx.get_node_attributes(G[21], "Degree")
+# H_2019 = nx.Graph()
+# for node1, node2 in G[21].edges():
+#     if value_2019[node2] > 130:
+#         H_2019.add_edge(node1, node2)
+
+# pos_2019 = nx.spectral_layout(H_2019)
+# nx.draw(H_2019, pos_2019, with_labels=True, edge_color=rel_colors_2019)
+# plt.plot(figsize=(20, 15))
 # plt.savefig("static/graph/G2019.png")
 # plt.close()
 
@@ -909,8 +1088,18 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 #         color_map_2020[key] = "red"
 #
 # rel_colors_2020 = [color_map_2020.get(edge) for edge in G[22].edges()]
-# pos_2020 = nx.spectral_layout(G[22])
-# nx.draw(G[22], pos_2020, with_labels=True, edge_color=rel_colors_2020)
+
+# degree_2020 = dict(G[22].degree)
+# nx.set_node_attributes(G[22], degree_2020, "Degree")
+# value_2020 = nx.get_node_attributes(G[22], "Degree")
+# H_2020 = nx.Graph()
+# for node1, node2 in G[22].edges():
+#     if value_2020[node2] > 130:
+#         H_2020.add_edge(node1, node2)
+
+# pos_2020 = nx.spectral_layout(H_2020)
+# nx.draw(H_2020, pos_2020, with_labels=True, edge_color=rel_colors_2020)
+# plt.plot(figsize=(20, 15))
 # plt.savefig("static/graph/G2020.png")
 # plt.close()
 
@@ -946,8 +1135,18 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 #         color_map_2021[key] = "red"
 #
 # rel_colors_2021 = [color_map_2021.get(edge) for edge in G[23].edges()]
-# pos_2021 = nx.spectral_layout(G[23])
-# nx.draw(G[23], pos_2021, with_labels=True, edge_color=rel_colors_2021)
+
+# degree_2021 = dict(G[23].degree)
+# nx.set_node_attributes(G[23], degree_2021, "Degree")
+# value_2021 = nx.get_node_attributes(G[23], "Degree")
+# H_2021 = nx.Graph()
+# for node1, node2 in G[23].edges():
+#     if value_2021[node2] > 130:
+#         H_2021.add_edge(node1, node2)
+
+# pos_2021 = nx.spectral_layout(H_2021)
+# nx.draw(H_2021, pos_2021, with_labels=True, edge_color=rel_colors_2021)
+# plt.plot(figsize=(20, 15))
 # plt.savefig("static/graph/G2021.png")
 # plt.close()
 
@@ -983,8 +1182,18 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 #         color_map_2022[key] = "red"
 #
 # rel_colors_2022 = [color_map_2022.get(edge) for edge in G[24].edges()]
-# pos_2022 = nx.spectral_layout(G[24])
-# nx.draw(G[24], pos_2022, with_labels=True, edge_color=rel_colors_2022)
+
+# degree_2022 = dict(G[24].degree)
+# nx.set_node_attributes(G[24], degree_2022, "Degree")
+# value_2022 = nx.get_node_attributes(G[24], "Degree")
+# H_2022 = nx.Graph()
+# for node1, node2 in G[24].edges():
+#     if value_2022[node2] > 5391:
+#         H_2022.add_edge(node1, node2)
+
+# pos_2022 = nx.spectral_layout(H_2022)
+# nx.draw(H_2022, pos_2022, with_labels=True, edge_color=rel_colors_2022)
+# plt.plot(figsize=(20, 15))
 # plt.savefig("static/graph/G2022.png")
 # plt.close()
 
@@ -1009,7 +1218,7 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 #       density_2012, density_2013, density_2014, density_2015, density_2016, density_2017, density_2018,
 #       density_2019, density_2020, density_2021, density_2022]
 # plt.plot(x4, y4)
-# plt.title("Network Density (1998-2022)")
+# plt.title("Link Density (1998-2022)")
 # plt.xticks(x4, rotation="vertical")
 # plt.grid(True)
 # plt.savefig("static/density.png")
@@ -1042,7 +1251,7 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 
 
 ## PLOTS THE COUNT OF NODES WHICH WERE ADDED AND REMOVED BETWEEN 2 CONSECUTIVE YEARS
-# # ADDED
+# COMPUTES THE ADDED NODES BYEACH PERIOD
 # new1 = []
 # node0 = G[0].nodes()
 # node1 = G[1].nodes()
@@ -1212,7 +1421,7 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 #         new24.append(n)
 # output24 = len(new24)
 #
-# # REMOVED
+# # COMPUTES THE REMOVED NODES FOR EACH PERIOD
 # removed0 = []
 # for n in node0:
 #     if n not in node1:
@@ -1381,7 +1590,7 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 #
 # result23 = len(removed23)
 #
-# # PLOTS
+# # PLOTS THE ADDED AND REMOVED NODE COUNT BY EACH PERIOD
 # x5 = ["'98-'99", "'99-'00", "'00-'01", "'01-'02", "'02-'03", "'03-'04", "'04-'05", "'05-'06", "'06-'07", "'07-'08",
 #       "'08-'09", "'09-'10", "'10-'11", "'11-'12", "'12-'13", "'13-'14", "'14-'15", "'15-'16", "'16-'17", "'17-'18",
 #       "'18-'19", "'19-'20", "'20-'21", "'21-'22"]
@@ -1399,66 +1608,3 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 # plt.savefig("static/add_remove.png")
 # plt.close()
 
-# G = [1998, 1999, 2000]
-# date = 1998
-# index = int(get_index_of_date(G, date))
-#
-# F = [1998, 1999, 2000]
-# file_index = int(get_index_of_file(F, date))
-#
-# F = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015,
-    #      2016, 2017, 2018, 2019, 2020, 2021, 2022]
-    # date = int(form_output["Period"])
-    # file_index = int(get_index_of_file(F, date))
-    # F[file_index] = f"Files/F{date}.xlsx"
-    # G[index].add_edges_from(file_upload(F[file_index]).edges)
-# # 1998
-# F[0] = f"Files/F{date}.xls"
-# file = F[0]
-# G[0] = nx.DiGraph()
-# G[0].add_edges_from(file_upload(F[0]).edges)  # THE EDGES IN THE DATASET ARE ADDED TO THE DIRECTED GRAPH, G
-#
-#
-# # THE FOLLOWING BLOCK OF CODE CALCULATES THE CENTRALITY MEASURES OF THE NODES IN THE NETWORK AND THE NETWORK AS A WHOLE
-# degree1998 = dict(G[0].degree)
-# in_degree1998 = dict(G[0].in_degree)
-# out_degree1998 = dict(G[0].out_degree)
-# btw_c1998 = nx.betweenness_centrality(G[0])
-# eigen_c1998 = nx.eigenvector_centrality(G[0])
-# nx.set_node_attributes(G[0], degree1998, 'Degree')
-# nx.set_node_attributes(G[0], in_degree1998, 'In-degree')
-# nx.set_node_attributes(G[0], out_degree1998, 'Out-degree')
-# nx.set_node_attributes(G[0], btw_c1998, 'Betweenness')
-# nx.set_node_attributes(G[0], eigen_c1998, 'Eigenvector')
-#
-# color_map = nx.get_edge_attributes(G[0], "rel")
-#
-# for key in color_map:
-#     if color_map[key] == "-1":
-#         color_map[key] = "red"
-#     if color_map[key] == "0":
-#         color_map[key] = "blue"
-#
-# rel_colors = [color_map.get(edge) for edge in G[0].edges()]
-# # node_sizes = [(total_domains.count(node)*100) for node in G[0].nodes()]
-# pos = nx.spectral_layout(G[0])
-# # nx.draw(G[0], pos, with_labels=True, edge_color=rel_colors)
-# # plt.show()
-#
-# # 1999
-# F[1] = f"Files/F{date}.xls"
-# G[1] = nx.DiGraph()
-# G[1].add_edges_from(file_upload(F[1]).edges)
-
-
-# THE FOLLOWING BLOCK OF CODE CALCULATES THE CENTRALITY MEASURES OF THE NODES IN THE NETWORK AND THE NETWORK AS A WHOLE
-# degree1999 = dict(G1999.degree)
-# in_degree1999 = dict(G1999.in_degree)
-# out_degree1999 = dict(G1999.out_degree)
-# btw_c1999 = nx.betweenness_centrality(G1999)
-# eigen_c1999 = nx.eigenvector_centrality(G1999)
-# nx.set_node_attributes(G1999, degree1999, 'Degree')
-# nx.set_node_attributes(G1999, in_degree1999, 'In-degree')
-# nx.set_node_attributes(G1999, out_degree1999, 'Out-degree')
-# nx.set_node_attributes(G1999, btw_c1999, 'Betweenness')
-# nx.set_node_attributes(G1999, eigen_c1999, 'Eigenvector')

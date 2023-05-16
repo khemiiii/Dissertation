@@ -21,15 +21,17 @@
     <section class="main_content" style="display:flex; background-color:White" >
         <div class="main_content_details" ><br>
             <p style="font-size:1rem; width:300px; max-width:100%">For details on the autonomous systems (ASs), their tiers, and the topology properties of the internet between 1998-2022:</p>
-
-            <div class=" btn-group-vertical" >
-                <h3 class="header3"><a href="/TopologyProperties"> <button class="btn btn-primary btn-lg" type="button"> AS Tier </button> </a></h3>
-                <h3 class="header3"><a href="/CentralNodes"> <button class="btn btn-primary btn-lg" type="button"> Central ASs </button> </a></h3>
-                <h3 class="header3"><a href="/DomainHierarchy"> <button class="btn btn-primary btn-lg" type="button"> AS Hierarchy </button> </a></h3> <!-- HREF WITHIN THE "A" TAG STORES THE LINK TO A WEBPAGE TO REDIRECT USERS, H3 STATES THE DESIGN OF THE TEXT WITHIN THE BUTTON-->
-                <h3 class="header3"><a href="/DomainCount"> <button class="btn btn-primary btn-lg" type="button">Network Size </button></a></h3> <!--THE IN-LINE CSS STYLE TAG STATES THE DESIGN OF THE BUTTON , &#x2192, style="height:45px; max-width:200px; border:none; background-color: SteelBlue; color:white;"-->
-                <h3 class="header3"><a href="/NewDomains"> <button class="btn btn-primary btn-lg" type="button">New ASs </button></a></h3>
-                <h3 class="header3"><a href="/RemovedDomains"> <button class="btn btn-primary btn-lg" type="button">Removed ASs </button></a></h3>
-            </div>
+            <center><h3 style="font-size:0.75rem; width:300px; max-width:100%">Note: Hover on each button for additional details.</h3></center>
+            <center>
+                <div class="btn-vertical">
+                    <div title="Computation of the Tier and other properties of a specific AS." class="header3"><a href="/TopologyProperties"> <button class="btn btn-primary btn-lg" type="button" style="width:200px; border:1.5px solid white"> AS Tier </button> </a></div>
+                    <div title="Computation of important ASs within the internet graph." class="header3"><a href="/CentralNodes"> <button class="btn btn-primary btn-lg" type="button" style="width:200px; border:1.5px solid white"> Central ASs </button> </a></div>
+                    <div title="Computation of next hop neighbours, relationship agreements and links." class="header3"><a href="/DomainHierarchy"> <button class="btn btn-primary btn-lg" type="button" style="width:200px; border:1.5px solid white"> AS Neighbours </button> </a></div> <!-- HREF WITHIN THE "A" TAG STORES THE LINK TO A WEBPAGE TO REDIRECT USERS, H3 STATES THE DESIGN OF THE TEXT WITHIN THE BUTTON-->
+                    <div title="Computation of AS count and visual representation of the internet." class="header3"><a href="/DomainCount"> <button class="btn btn-primary btn-lg" type="button" style="width:200px; border:1.5px solid white">Network Size </button></a></div> <!--THE IN-LINE CSS STYLE TAG STATES THE DESIGN OF THE BUTTON , &#x2192, style="height:45px; max-width:200px; border:none; background-color: SteelBlue; color:white;"-->
+                    <div title="Computation of ASs which joined the internet within a specific period." class="header3"><a href="/NewDomains"> <button class="btn btn-primary btn-lg" type="button" style="width:200px; border:1.5px solid white">New ASs </button></a></div>
+                    <div title="Computation of ASs removed from the internet within a period." class="header3"><a href="/RemovedDomains"> <button class="btn btn-primary btn-lg" type="button" style="width:200px; border:1.5px solid white">Removed ASs </button></a></div>
+                </div>
+            </center>
         </div>
         <div class="main_content_graphs" style="display:flex">
             <img src="{{url_for('static', filename='yearly_count.png')}}" height="450px" width="475px" style="max-width:100%;"> <!-- HEIGHT AND WIDTH SETS THE SIZE OF THE IMAGE, THE MAX WIDTH STATES THE MAX SIZE OF THE IMAGE FOR ALL SCREEN SIZES -->
@@ -67,7 +69,7 @@
 
         button{
         max-width:initial;
-        min-width:250px
+        min-width:250px;
         }
 
         .header3{
