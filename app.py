@@ -73,7 +73,7 @@ def centralnodesresult():
     # NODE1 IN THE FILE IS STORED IN THE COLUMN TITLED "SOURCE"
     # NODE2 IN THE FILE IS STORED IN THE COLUMN TITLED "TARGET"
     # THE RELATIONSHIP TYPES ARE STORED IN THE COLUMN TITLED "RELATIONSHIP"
-    df = pd.read_excel(f"Files/F{date}.xlsx")
+    df = pd.read_excel(f"files/F{date}.xlsx")
     G[index] = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr='relationship')
 
     # COMPUTES THE CENTRALITY MEASURES OF THE NODES AND SAVES THEM AS ATTRIBUTES OF THE NODES
@@ -108,7 +108,7 @@ def tpresult():
     index = int(get_index_of_date(G, date))
     G[index] = nx.DiGraph()
     date = int(form_output["Period"])
-    df = pd.read_excel(f"Files/F{date}.xlsx")
+    df = pd.read_excel(f"files/F{date}.xlsx")
     G[index] = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr='relationship',
                                        create_using=nx.DiGraph())
 
@@ -172,7 +172,7 @@ def dhresult():
     index = int(get_index_of_date(G, date))
     G[index] = nx.Graph()
     date = int(form_output["Period"])
-    df = pd.read_excel(f"Files/F{date}.xlsx")
+    df = pd.read_excel(f"files/F{date}.xlsx")
     G[index] = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr='relationship',
                                        create_using=nx.Graph())
 
@@ -233,7 +233,7 @@ def dcresult():
          2016, 2017, 2018, 2019, 2020, 2021, 2022]
     index = int(get_index_of_date(G, date))
     G[index] = nx.Graph()
-    df = pd.read_excel(f"Files/F{date}.xlsx")
+    df = pd.read_excel(f"files/F{date}.xlsx")
     G[index] = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr='relationship')
 
     # COMPUTES THE NETWORK SIZE AND DENSITY PROPERTY OF THE GRAPH
@@ -253,12 +253,12 @@ def ndresult():
          2016, 2017, 2018, 2019, 2020, 2021, 2022]
     index1 = int(get_index_of_date(G, date1))
     G[index1] = nx.Graph()
-    df = pd.read_excel(f"Files/F{date1}.xlsx")
+    df = pd.read_excel(f"files/F{date1}.xlsx")
     G[index1] = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr='relationship')
 
     index2 = int(get_index_of_date(G, date2))
     G[index2] = nx.Graph()
-    df = pd.read_excel(f"Files/F{date2}.xlsx")
+    df = pd.read_excel(f"files/F{date2}.xlsx")
     G[index2] = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr='relationship')
 
     # CREATES A NEW LIST TO STORE THE NODES WHICH EXISTS IN NODE2 BUT NOT NODE1
@@ -287,11 +287,11 @@ def rdresult():
          2016, 2017, 2018, 2019, 2020, 2021, 2022]
     index1 = int(get_index_of_date(G, date1))
     G[index1] = nx.Graph()
-    df = pd.read_excel(f"Files/F{date1}.xlsx")
+    df = pd.read_excel(f"files/F{date1}.xlsx")
     G[index1] = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr='relationship')
 
     index2 = int(get_index_of_date(G, date2))
-    df = pd.read_excel(f"Files/F{date2}.xlsx")
+    df = pd.read_excel(f"files/F{date2}.xlsx")
     G[index2] = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr='relationship')
 
     # CREATES A REMOVED LIST TO STORE THE NODES WHICH EXISTS IN NODE1 BUT NOT NODE2

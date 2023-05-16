@@ -21,7 +21,7 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 
 # THE DATA IS EXTRACTED FROM THE PANDAS DATAFRAME AND PASSED INTO THE UNDIRECTED GRAPH
 # G[0] = nx.Graph()  # creates an undirected graph
-# df = pd.read_excel(f"Files/F1998.xlsx")  # pandas is used to extract the data from the file
+# df = pd.read_excel(f"files/F1998.xlsx")  # pandas is used to extract the data from the file
 # G[0] = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr='relationship')
 # COMPUTES THE NETWORK SIZE, NUMBER OF LINKS, NUMBER OF PROVIDER AND PEER LINKS, AND THE LINK DENSITY PROPERTY OF THE GRAPH
 # count_1998 = number_of_nodes(G[0])
@@ -72,7 +72,7 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 
 
 # G[1] = nx.Graph()
-# df = pd.read_excel(f"Files/F1999.xlsx")
+# df = pd.read_excel(f"files/F1999.xlsx")
 # G[1] = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr='relationship')
 # count_1999 = number_of_nodes(G[1])
 # print(f"1999: {count_1999}")
@@ -118,7 +118,7 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 # plt.close()
 
 # G[2] = nx.Graph()
-# df = pd.read_excel(f"Files/F2000.xlsx")
+# df = pd.read_excel(f"files/F2000.xlsx")
 # G[2] = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr='relationship')
 # count_2000 = number_of_nodes(G[2])
 # print(f"2000: {count_2000}")
@@ -165,7 +165,7 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 
 
 # G[3] = nx.Graph()
-# df = pd.read_excel(f"Files/F2001.xlsx")
+# df = pd.read_excel(f"files/F2001.xlsx")
 # G[3] = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr='relationship')
 # count_2001 = number_of_nodes(G[3])
 # print(f"2001: {count_2001}")
@@ -212,7 +212,7 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 
 
 # G[4] = nx.Graph()
-# df = pd.read_excel(f"Files/F2002.xlsx")
+# df = pd.read_excel(f"files/F2002.xlsx")
 # G[4] = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr='relationship')
 # count_2002 = number_of_nodes(G[4])
 # print(f"2002: {count_2002}")
@@ -259,7 +259,7 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 
 
 # G[5] = nx.Graph()
-# df = pd.read_excel(f"Files/F2003.xlsx")
+# df = pd.read_excel(f"files/F2003.xlsx")
 # G[5] = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr='relationship')
 # count_2003 = number_of_nodes(G[5])
 # print(f"2003: {count_2003}")
@@ -306,7 +306,7 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 
 
 # G[6] = nx.Graph()
-# df = pd.read_excel(f"Files/F2004.xlsx")
+# df = pd.read_excel(f"files/F2004.xlsx")
 # G[6] = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr='relationship')
 # count_2004 = number_of_nodes(G[6])
 # print(f"2004: {count_2004}")
@@ -353,7 +353,7 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 
 
 # G[7] = nx.Graph()
-# df = pd.read_excel(f"Files/F2005.xlsx")
+# df = pd.read_excel(f"files/F2005.xlsx")
 # G[7] = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr='relationship')
 # count_2005 = number_of_nodes(G[7])
 # print(f"2005: {count_2005}")
@@ -400,7 +400,7 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 
 
 # G[8] = nx.Graph()
-# df = pd.read_excel(f"Files/F2006.xlsx")
+# df = pd.read_excel(f"files/F2006.xlsx")
 # G[8] = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr='relationship')
 # count_2006 = number_of_nodes(G[8])
 # print(f"2006: {count_2006}")
@@ -447,7 +447,7 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 
 
 # G[9] = nx.Graph()
-# df = pd.read_excel(f"Files/F2007.xlsx")
+# df = pd.read_excel(f"files/F2007.xlsx")
 # G[9] = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr='relationship')
 # count_2007 = number_of_nodes(G[9])
 # print(f"2007: {count_2007}")
@@ -494,7 +494,7 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 
 
 # G[10] = nx.Graph()
-# df = pd.read_excel(f"Files/F2008.xlsx")
+# df = pd.read_excel(f"files/F2008.xlsx")
 # G[10] = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr='relationship')
 # count_2008 = number_of_nodes(G[10])
 # print(f"2008: {count_2008}")
@@ -541,7 +541,7 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 
 
 # G[11] = nx.Graph()
-# df = pd.read_excel(f"Files/F2009.xlsx")
+# df = pd.read_excel(f"files/F2009.xlsx")
 # G[11] = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr='relationship')
 # count_2009 = number_of_nodes(G[11])
 # print(f"2009: {count_2009}")
@@ -588,7 +588,7 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 
 
 # G[12] = nx.Graph()
-# df = pd.read_excel(f"Files/F2010.xlsx")
+# df = pd.read_excel(f"files/F2010.xlsx")
 # G[12] = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr='relationship')
 # count_2010 = number_of_nodes(G[12])
 # print(f"2010: {count_2010}")
@@ -635,7 +635,7 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 
 
 # G[13] = nx.Graph()
-# df = pd.read_excel(f"Files/F2011.xlsx")
+# df = pd.read_excel(f"files/F2011.xlsx")
 # G[13] = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr='relationship')
 # count_2011 = number_of_nodes(G[13])
 # print(f"2011: {count_2011}")
@@ -682,7 +682,7 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 
 
 # G[14] = nx.Graph()
-# df = pd.read_excel(f"Files/F2012.xlsx")
+# df = pd.read_excel(f"files/F2012.xlsx")
 # G[14] = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr='relationship')
 # count_2012 = number_of_nodes(G[14])
 # print(f"2012: {count_2012}")
@@ -729,7 +729,7 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 
 
 # G[15] = nx.Graph()
-# df = pd.read_excel(f"Files/F2013.xlsx")
+# df = pd.read_excel(f"files/F2013.xlsx")
 # G[15] = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr='relationship')
 # count_2013 = number_of_nodes(G[15])
 # print(f"2013: {count_2013}")
@@ -776,7 +776,7 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 
 
 # G[16] = nx.Graph()
-# df = pd.read_excel(f"Files/F2014.xlsx")
+# df = pd.read_excel(f"files/F2014.xlsx")
 # G[16] = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr='relationship')
 # count_2014 = number_of_nodes(G[16])
 # print(f"2014: {count_2014}")
@@ -823,7 +823,7 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 
 
 # G[17] = nx.Graph()
-# df = pd.read_excel(f"Files/F2015.xlsx")
+# df = pd.read_excel(f"files/F2015.xlsx")
 # G[17] = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr='relationship')
 # count_2015 = number_of_nodes(G[17])
 # print(f"2015: {count_2015}")
@@ -870,7 +870,7 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 
 
 # G[18] = nx.Graph()
-# df = pd.read_excel(f"Files/F2016.xlsx")
+# df = pd.read_excel(f"files/F2016.xlsx")
 # G[18] = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr='relationship')
 # count_2016 = number_of_nodes(G[18])
 # print(f"2016: {count_2016}")
@@ -917,7 +917,7 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 
 
 # G[19] = nx.Graph()
-# df = pd.read_excel(f"Files/F2017.xlsx")
+# df = pd.read_excel(f"files/F2017.xlsx")
 # G[19] = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr='relationship')
 # count_2017 = number_of_nodes(G[19])
 # print(f"2017: {count_2017}")
@@ -964,7 +964,7 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 
 
 # G[20] = nx.Graph()
-# df = pd.read_excel(f"Files/F2018.xlsx")
+# df = pd.read_excel(f"files/F2018.xlsx")
 # G[20] = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr='relationship')
 # count_2018 = number_of_nodes(G[20])
 # print(f"2018: {count_2018}")
@@ -1011,7 +1011,7 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 
 
 # G[21] = nx.Graph()
-# df = pd.read_excel(f"Files/F2019.xlsx")
+# df = pd.read_excel(f"files/F2019.xlsx")
 # G[21] = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr='relationship')
 # count_2019 = number_of_nodes(G[21])
 # print(f"2019: {count_2019}")
@@ -1058,7 +1058,7 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 
 
 # G[22] = nx.Graph()
-# df = pd.read_excel(f"Files/F2020.xlsx")
+# df = pd.read_excel(f"files/F2020.xlsx")
 # G[22] = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr='relationship')
 # count_2020 = number_of_nodes(G[22])
 # print(f"2020: {count_2020}")
@@ -1105,7 +1105,7 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 
 
 # G[23] = nx.Graph()
-# df = pd.read_excel(f"Files/F2021.xlsx")
+# df = pd.read_excel(f"files/F2021.xlsx")
 # G[23] = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr='relationship')
 # count_2021 = number_of_nodes(G[23])
 # print(f"2021: {count_2021}")
@@ -1152,7 +1152,7 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 
 
 # G[24] = nx.Graph()
-# df = pd.read_excel(f"Files/F2022.xlsx")
+# df = pd.read_excel(f"files/F2022.xlsx")
 # G[24] = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr='relationship')
 # count_2022 = number_of_nodes(G[24])
 # print(f"2022: {count_2022}")
