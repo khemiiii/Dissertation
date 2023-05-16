@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About</title>
+</head>
+<body bgColor="Lavender">
+    <center>
+        <h1 style="font-size:1.75rem">About Visualisation of the Internet</h1>
+    </center>
+    <hr noshade>
+    <h3 class="header3">OVERVIEW</h3>
+
+    <p class="header3">The internet has become an essential part of modern life, yet its complexity makes it difficult to fully comprehend.
+        As of January 2023, there were 5.16 billion internet users globally, accounting for 64.4 percent of the global population.
+        Organisations such as ISPs, universities, and data centres, make use of an autonomous system (AS), which allows data to be transmitted over the internet.
+        This application uses the AS-level data of the internet to perform analysis on its evolution. It includes tools that perform a variety of functions,
+        which will be explored further below. Graphs, tables and charts have been used to provide a visual representation of how the number of ASs assigned evolved over time.
+        This information is presented on the site's homepage, along with a chart showing the rise and fall of the overall number of connections,
+        including the number of links based on the type of relationship agreement. The AS relationship agreement in the present analysis was
+        limited to the Provider-Customer and Peer-Peer relationships acquired from the CAIDA website.</p>
+
+    <h3 class="header3">TOOLS FOR ANALYSIS</h3>
+    <p class="header3">The tools discussed below are ordered accordingly as the outlined buttons on the homepage.
+        The analysis is based on the CAIDA infererred AS-relationship dataset from 1998-2022:</p>
+
+    <p class="header3">1. Determination of the tier of an AS, and it’s centrality measures within the graph of a specific year.
+        The requirements for this tool include the ASN and the year of enquiry.</p>
+
+    <p class="header3">2. Identification of the top 10 central ASs within a specific year.
+        These ASs are of importance thus have high values in respect to their degree(how many neighbours/links they have),
+        eigenvector(depends on the centrality of a node's neighbours) and betweenness(measures the optimal paths which connect through the node).</p>
+
+    <p class="header3">3. Visualisation of the hierarchy of an AS using a graph and a list of the neighbours of an AS.
+        If the hop cut-off is set to 1; thus showing only next-hop neighbours, the tool outputs the relationship agreement type the specific AS has with each neighbour.
+        Otherwise, the table displays only the path that can be taken to reach that node.The requirements for this tool include the AS, hop cut-off number,
+        and the specific year of interest.</p>
+
+    <p class="header3">4. Computation of the network size for a given year and a graph is presented with a limited view of the provider ASs and nodes of inferred importance.</p>
+
+    <p class="header3">5. Analysis of the data to extract the ASs that joined the internet given two different years.</p>
+
+    <p class="header3">6. Examination of the data to show the ASs that were removed from the network within two years of interest.</p>
+
+    <h3 class="header3">AIM</h3>
+
+    <p class="header3">The visualisation of the internet project aims to broaden individuals' understanding of the internet's evolution and structure.
+        It also serves as a platform for additional study of the network's current state in order to develop recommendations for its enhancement.</p>
+
+    <h3 class="header3">MORE ANALYSIS CHARTS</h3>
+    <center>
+    <img src="{{url_for('static', filename='density.png')}}" height="450px" width="475px" style="max-width:100%;">
+    <img src="{{url_for('static', filename='add_remove.png')}}" height="450px" width="475px" style="max-width:100%;">
+    </center>
+</body>
+<style>
+    body{background-color:Lavender}
+    @media screen and (max-width: 1275px){
+         p{
+         margin-inline:auto}
+
+        .header3{
+        font-size:1.5rem
+        }
+    }
+
+     @media screen and (max-width: 1100px){
+        .header3{
+        font-size:1rem
+        }
+     }
+</style>
+</html>
