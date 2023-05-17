@@ -8,6 +8,7 @@ import pandas as pd
 import itertools
 import os
 import openpyxl
+import collections
 import matplotlib.pyplot as plt
 import matplotlib
 matplotlib.use('agg')
@@ -219,7 +220,7 @@ def dhresult():
 
 
 # RENDERS THE DOMAIN HIERARCHY IMAGE
-@app.route("/Image")
+@app.route("/Image", methods=["POST", "GET"])
 def image():
     return render_template("Image.html")
 
@@ -227,6 +228,10 @@ def image():
 # COMPUTES THE COUNT OF ASs WITHIN A YEAR
 @app.route("/DCresult", methods=["POST", "GET"])
 def dcresult():
+    file_name = "static/images/degree_dist.png"
+    if os.path.isfile(file_name):
+        os.remove(file_name)
+
     form_output = request.form.to_dict()
     date = int(form_output["Period"])
     file = f"static/G{date}_.png"
@@ -241,7 +246,23 @@ def dcresult():
     count = number_of_nodes(G[index])
     density = nx.density(G[index])
 
+    degree_sequence = sorted([d for n, d in G[0].degree()], reverse=True)
+    degree_count = collections.Counter(degree_sequence)
+    deg, cnt = zip(*degree_count.items())
+
+    plt.plot(deg, cnt, color="r", marker="o")
+    plt.title("Degree Distribution")
+    plt.ylabel("Number of Nodes")
+    plt.xlabel("Degree")
+    plt.savefig(file_name)
+    plt.close()
+
     return render_template("DCresult.html", date=date, count=count, density=density, image=file)
+
+
+@app.route("/Degree_Dist", methods=["POST", "GET"])
+def degree_dist():
+    return render_template("Degree_dist.html")
 
 
 # COMPUTES THE ASs ADDED WITHIN A PERIOD

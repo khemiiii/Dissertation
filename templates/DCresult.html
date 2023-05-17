@@ -10,6 +10,10 @@
     <p class="header3">AS Count for {{date}} : <strong>{{count}}</strong></p> <!-- the class statement adopts the design style of the stated class within the quotes from the css style script -->
     <p class="header3">Link Density for {{date}} : <strong>{{density}}</strong></p> <!-- the curly brackets are used to store variables
                                                                     which are passed in from the backend to the frontend-->
-     <center><img src= "{{image}}" style="max-width:100%;height:auto;"></center>
+    <a href="/Degree_Dist"><button style="height:45px; max-width:200px; border:none; background-color: SteelBlue; color:white; font-size:1rem">View Degree Distribution</button></a>
+    <p class="header3"><strong>The chart shows the distribution of the number of Autonomous Systems(nodes) by degree values:</strong></p>
+    <center><img src="{{url_for('static', filename='images/degree_dist.png')}}"></center>
+    <p class="header3"><strong>A view of the network graph displaying the provider nodes and inferred nodes of importance:</strong></p>
+    <center><img src= "{{image}}" style="max-width:100%;height:auto;"></center>
 </body>
 </html>

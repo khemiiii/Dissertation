@@ -3,6 +3,7 @@ from networkx import number_of_nodes, number_of_edges
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+import collections
 
 
 # THIS FUNCTION IS CREATED TO GET THE INDEX OF THE DATE IN A LIST G
@@ -63,6 +64,17 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 #     if value_1998[node2] > 130:
 #         H_1998.add_edge(node1, node2)
 #
+# degree_sequence = sorted([d for n, d in G[0].degree()], reverse=True)
+# degreeCount = collections.Counter(degree_sequence)
+# deg, cnt = zip(*degreeCount.items())
+#
+# fig, ax = plt.subplots()
+# plt.plot(deg, cnt, color="r", marker="o")
+# plt.title("Degree Distribution")
+# plt.ylabel("Number of Nodes")
+# plt.xlabel("Degree")
+# plt.show()
+
 # # construct and save graph
 # pos_1998 = nx.spring_layout(H_1998)
 # nx.draw(H_1998, pos_1998, with_labels=True, edge_color=rel_colors_1998)
