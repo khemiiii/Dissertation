@@ -260,11 +260,6 @@ def dcresult():
     return render_template("DCresult.html", date=date, count=count, density=density, image=file)
 
 
-@app.route("/Degree_Dist", methods=["POST", "GET"])
-def degree_dist():
-    return render_template("Degree_dist.html")
-
-
 # COMPUTES THE ASs ADDED WITHIN A PERIOD
 @app.route("/NDresult", methods=["POST", "GET"])
 def ndresult():
