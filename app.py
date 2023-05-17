@@ -2,7 +2,7 @@
 from flask import Flask, render_template, request
 import networkx as nx
 from operator import itemgetter
-from networkx import number_of_nodes
+from networkx import number_of_nodes, number_of_edges
 from Documents import get_index_of_date
 import pandas as pd
 import itertools
@@ -244,6 +244,7 @@ def dcresult():
 
     # COMPUTES THE NETWORK SIZE AND DENSITY PROPERTY OF THE GRAPH
     count = number_of_nodes(G[index])
+    links = number_of_edges(G[index])
     density = nx.density(G[index])
 
     # PLOTS THE DEGREE DISTRIBUTION
@@ -257,7 +258,7 @@ def dcresult():
     plt.savefig(file_name)
     plt.close()
 
-    return render_template("DCresult.html", date=date, count=count, density=density, image=file)
+    return render_template("DCresult.html", date=date, count=count, links=links, density=density)
 
 
 # COMPUTES THE ASs ADDED WITHIN A PERIOD
