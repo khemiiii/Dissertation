@@ -52,7 +52,7 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 #         color_map_1998[key] = "blue"
 #     elif color_map_1998[key] == -1:
 #         color_map_1998[key] = "red"
-#
+# #
 # rel_colors_1998 = [color_map_1998.get(edge) for edge in G[0].edges()]
 #
 # # create a second graph to append nodes meeting the degree requirement
@@ -83,9 +83,9 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 # plt.close()
 
 
-# G[1] = nx.Graph()
-# df = pd.read_excel(f"files/F1999.xlsx")
-# G[1] = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr='relationship')
+G[1] = nx.Graph()
+df = pd.read_excel(f"files/F1999.xlsx")
+G[1] = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr='relationship')
 # count_1999 = number_of_nodes(G[1])
 # print(f"1999: {count_1999}")
 # edges_1999 = number_of_edges(G[1])
@@ -105,33 +105,33 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 # density_1999 = nx.density(G[1])
 # print(f"density_1999: {density_1999}")
 
-# color_map_1999 = nx.get_edge_attributes(G[1], "relationship")
-#
-# for key in color_map_1999:
-#     if color_map_1999[key] == 0:
-#         color_map_1999[key] = "blue"
-#     elif color_map_1999[key] == -1:
-#         color_map_1999[key] = "red"
-#
-# rel_colors_1999 = [color_map_1999.get(edge) for edge in G[1].edges()]
-#
-# degree_1999 = dict(G[1].degree)
-# nx.set_node_attributes(G[1], degree_1999, "Degree")
-# value_1999 = nx.get_node_attributes(G[1], "Degree")
-# H_1999 = nx.Graph()
-# for node1, node2 in G[1].edges():
-#     if value_1999[node2] > 130:
-#         H_1999.add_edge(node1, node2)
-#
-# pos_1999 = nx.spring_layout(H_1999)
-# nx.draw(H_1999, pos_1999, with_labels=True, edge_color=rel_colors_1999)
-# plt.plot(figsize=(20, 15))
-# plt.savefig("static/graph/G1999.png")
-# plt.close()
+color_map_1999 = nx.get_edge_attributes(G[1], "relationship")
 
-# G[2] = nx.Graph()
-# df = pd.read_excel(f"files/F2000.xlsx")
-# G[2] = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr='relationship')
+for key in color_map_1999:
+    if color_map_1999[key] == 0:
+        color_map_1999[key] = "blue"
+    elif color_map_1999[key] == -1:
+        color_map_1999[key] = "red"
+
+rel_colors_1999 = [color_map_1999.get(edge) for edge in G[1].edges()]
+
+degree_1999 = dict(G[1].degree)
+nx.set_node_attributes(G[1], degree_1999, "Degree")
+value_1999 = nx.get_node_attributes(G[1], "Degree")
+H_1999 = nx.Graph()
+for node1, node2 in G[1].edges():
+    if value_1999[node2] > 187:
+        H_1999.add_edge(node1, node2)
+
+pos_1999 = nx.spring_layout(H_1999)
+nx.draw(H_1999, pos_1999, with_labels=True, edge_color=rel_colors_1999)
+plt.plot(figsize=(20, 15))
+plt.savefig("static/graph/G1999.png")
+plt.close()
+
+G[2] = nx.Graph()
+df = pd.read_excel(f"files/F2000.xlsx")
+G[2] = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr='relationship')
 # count_2000 = number_of_nodes(G[2])
 # print(f"2000: {count_2000}")
 # edges_2000 = number_of_edges(G[2])
@@ -151,34 +151,34 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 # density_2000 = nx.density(G[2])
 # print(f"density_2000: {density_2000}")
 
-# color_map_2000 = nx.get_edge_attributes(G[2], "relationship")
-#
-# for key in color_map_2000:
-#     if color_map_2000[key] == 0:
-#         color_map_2000[key] = "blue"
-#     elif color_map_2000[key] == -1:
-#         color_map_2000[key] = "red"
-#
-# rel_colors_2000 = [color_map_2000.get(edge) for edge in G[2].edges()]
+color_map_2000 = nx.get_edge_attributes(G[2], "relationship")
 
-# degree_2000 = dict(G[2].degree)
-# nx.set_node_attributes(G[2], degree_2000, "Degree")
-# value_2000 = nx.get_node_attributes(G[2], "Degree")
-# H_2000 = nx.Graph()
-# for node1, node2 in G[2].edges():
-#     if value_2000[node2] > 130:
-#         H_2000.add_edge(node1, node2)
+for key in color_map_2000:
+    if color_map_2000[key] == 0:
+        color_map_2000[key] = "blue"
+    elif color_map_2000[key] == -1:
+        color_map_2000[key] = "red"
 
-# pos_2000 = nx.spectral_layout(H_2000)
-# nx.draw(H_2000, pos_2000, with_labels=True, edge_color=rel_colors_2000)
-# plt.plot(figsize=(20, 15))
-# plt.savefig("static/graph/G2000.png")
-# plt.close()
+rel_colors_2000 = [color_map_2000.get(edge) for edge in G[2].edges()]
+
+degree_2000 = dict(G[2].degree)
+nx.set_node_attributes(G[2], degree_2000, "Degree")
+value_2000 = nx.get_node_attributes(G[2], "Degree")
+H_2000 = nx.Graph()
+for node1, node2 in G[2].edges():
+    if value_2000[node2] > 433:
+        H_2000.add_edge(node1, node2)
+
+pos_2000 = nx.spectral_layout(H_2000)
+nx.draw(H_2000, pos_2000, with_labels=True, edge_color=rel_colors_2000)
+plt.plot(figsize=(20, 15))
+plt.savefig("static/graph/G2000.png")
+plt.close()
 
 
-# G[3] = nx.Graph()
-# df = pd.read_excel(f"files/F2001.xlsx")
-# G[3] = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr='relationship')
+G[3] = nx.Graph()
+df = pd.read_excel(f"files/F2001.xlsx")
+G[3] = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr='relationship')
 # count_2001 = number_of_nodes(G[3])
 # print(f"2001: {count_2001}")
 # edges_2001 = number_of_edges(G[3])
@@ -198,34 +198,34 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 # density_2001 = nx.density(G[3])
 # print(f"density_2001: {density_2001}")
 
-# color_map_2001 = nx.get_edge_attributes(G[3], "relationship")
-#
-# for key in color_map_2001:
-#     if color_map_2001[key] == 0:
-#         color_map_2001[key] = "blue"
-#     elif color_map_2001[key] == -1:
-#         color_map_2001[key] = "red"
-#
-# rel_colors_2001 = [color_map_2001.get(edge) for edge in G[3].edges()]
+color_map_2001 = nx.get_edge_attributes(G[3], "relationship")
 
-# degree_2001 = dict(G[3].degree)
-# nx.set_node_attributes(G[3], degree_2001, "Degree")
-# value_2001 = nx.get_node_attributes(G[3], "Degree")
-# H_2001 = nx.Graph()
-# for node1, node2 in G[3].edges():
-#     if value_2001[node2] > 130:
-#         H_2001.add_edge(node1, node2)
+for key in color_map_2001:
+    if color_map_2001[key] == 0:
+        color_map_2001[key] = "blue"
+    elif color_map_2001[key] == -1:
+        color_map_2001[key] = "red"
 
-# pos_2001 = nx.spectral_layout(H_2001)
-# nx.draw(H_2001, pos_2001, with_labels=True, edge_color=rel_colors_2001)
-# plt.plot(figsize=(20, 15))
-# plt.savefig("static/graph/G2001.png")
-# plt.close()
+rel_colors_2001 = [color_map_2001.get(edge) for edge in G[3].edges()]
+
+degree_2001 = dict(G[3].degree)
+nx.set_node_attributes(G[3], degree_2001, "Degree")
+value_2001 = nx.get_node_attributes(G[3], "Degree")
+H_2001 = nx.Graph()
+for node1, node2 in G[3].edges():
+    if value_2001[node2] > 634:
+        H_2001.add_edge(node1, node2)
+
+pos_2001 = nx.spectral_layout(H_2001)
+nx.draw(H_2001, pos_2001, with_labels=True, edge_color=rel_colors_2001)
+plt.plot(figsize=(20, 15))
+plt.savefig("static/graph/G2001.png")
+plt.close()
 
 
-# G[4] = nx.Graph()
-# df = pd.read_excel(f"files/F2002.xlsx")
-# G[4] = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr='relationship')
+G[4] = nx.Graph()
+df = pd.read_excel(f"files/F2002.xlsx")
+G[4] = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr='relationship')
 # count_2002 = number_of_nodes(G[4])
 # print(f"2002: {count_2002}")
 # edges_2002 = number_of_edges(G[4])
@@ -245,29 +245,29 @@ G = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 201
 # density_2002 = nx.density(G[4])
 # print(f"density_2002: {density_2002}")
 
-# color_map_2002 = nx.get_edge_attributes(G[4], "relationship")
-#
-# for key in color_map_2002:
-#     if color_map_2002[key] == 0:
-#         color_map_2002[key] = "blue"
-#     elif color_map_2002[key] == -1:
-#         color_map_2002[key] = "red"
-#
-# rel_colors_2002 = [color_map_2002.get(edge) for edge in G[4].edges()]
+color_map_2002 = nx.get_edge_attributes(G[4], "relationship")
 
-# degree_2002 = dict(G[4].degree)
-# nx.set_node_attributes(G[4], degree_2002, "Degree")
-# value_2002 = nx.get_node_attributes(G[4], "Degree")
-# H_2002 = nx.Graph()
-# for node1, node2 in G[4].edges():
-#     if value_2002[node2] > 130:
-#         H_2002.add_edge(node1, node2)
+for key in color_map_2002:
+    if color_map_2002[key] == 0:
+        color_map_2002[key] = "blue"
+    elif color_map_2002[key] == -1:
+        color_map_2002[key] = "red"
 
-# pos_2002 = nx.spectral_layout(H_2002)
-# nx.draw(H_2002, pos_2002, with_labels=True, edge_color=rel_colors_2002)
-# plt.plot(figsize=(20, 15))
-# plt.savefig("static/graph/G2002.png")
-# plt.close()
+rel_colors_2002 = [color_map_2002.get(edge) for edge in G[4].edges()]
+
+degree_2002 = dict(G[4].degree)
+nx.set_node_attributes(G[4], degree_2002, "Degree")
+value_2002 = nx.get_node_attributes(G[4], "Degree")
+H_2002 = nx.Graph()
+for node1, node2 in G[4].edges():
+    if value_2002[node2] > 726:
+        H_2002.add_edge(node1, node2)
+
+pos_2002 = nx.spectral_layout(H_2002)
+nx.draw(H_2002, pos_2002, with_labels=True, edge_color=rel_colors_2002)
+plt.plot(figsize=(20, 15))
+plt.savefig("static/graph/G2002.png")
+plt.close()
 
 
 # G[5] = nx.Graph()
