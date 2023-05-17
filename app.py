@@ -246,10 +246,10 @@ def dcresult():
     count = number_of_nodes(G[index])
     density = nx.density(G[index])
 
+    # PLOTS THE DEGREE DISTRIBUTION
     degree_sequence = sorted([d for n, d in G[0].degree()], reverse=True)
     degree_count = collections.Counter(degree_sequence)
     deg, cnt = zip(*degree_count.items())
-
     plt.plot(deg, cnt, color="r", marker="o")
     plt.title("Degree Distribution")
     plt.ylabel("Number of Nodes")
@@ -332,4 +332,4 @@ def rdresult():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5005)  # THE SPECIFIC PORT IS STATED
+    app.run(debug=True)
