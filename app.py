@@ -248,7 +248,7 @@ def dcresult():
     density = nx.density(G[index])
 
     # PLOTS THE DEGREE DISTRIBUTION
-    degree_sequence = sorted([d for n, d in G[0].degree()], reverse=True)
+    degree_sequence = sorted([d for n, d in G[index].degree()], reverse=True)
     degree_count = collections.Counter(degree_sequence)
     deg, cnt = zip(*degree_count.items())
     plt.plot(deg, cnt, color="r", marker="o")
